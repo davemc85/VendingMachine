@@ -39,4 +39,11 @@ public class Drawer {
     public int stockCount(){
         return this.products.size();
     }
+
+    public Product returnProduct() {
+        if (this.products.size() > 0) {
+            return this.products.remove(0);
+        }
+        return null;
+    }
 }
