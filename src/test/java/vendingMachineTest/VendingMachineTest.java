@@ -50,7 +50,6 @@ public class VendingMachineTest {
         vendingMachine.addDrawer(drawerA3);
     }
 
-
     @Test
     public void canAddCoin() {
         vendingMachine.addCoin(twenty);

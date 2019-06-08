@@ -7,7 +7,9 @@ public enum CoinType {
     TWENTY(20),
     FIFTY(50),
     POUND(100),
-    TWOPOUND(200);
+    TWOPOUND(200),
+    ONE(1),
+    TWO(2);
 
     private final int value;
 

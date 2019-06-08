@@ -15,6 +15,8 @@ public class CoinTest {
     private Coin twenty;
     private Coin ten;
     private Coin five;
+    private Coin two;
+    private Coin one;
 
     @Before
     public void setUp(){
@@ -24,6 +26,8 @@ public class CoinTest {
         twenty = new Coin(CoinType.TWENTY);
         ten = new Coin(CoinType.TEN);
         five = new Coin(CoinType.FIVE);
+        two = new Coin(CoinType.TWO);
+        one = new Coin(CoinType.ONE);
     }
 
     @Test
@@ -54,5 +58,15 @@ public class CoinTest {
     @Test
     public void canGetFive(){
         assertEquals(5, five.getValue());
+    }
+
+    @Test
+    public void canGetTwo(){
+        assertEquals(2, two.getValue());
+    }
+
+    @Test
+    public void canGetOne(){
+        assertEquals(1, one.getValue());
     }
 }
