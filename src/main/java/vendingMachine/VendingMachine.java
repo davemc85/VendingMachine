@@ -3,6 +3,8 @@ package vendingMachine;
 import coins.Coin;
 import coins.CoinReturn;
 import drawer.Drawer;
+import drawer.ItemCode;
+import products.Product;
 
 import java.util.ArrayList;
 
@@ -22,11 +24,6 @@ public class VendingMachine {
         this.drawers.add(drawer);
     }
 
-    public void addCoin(Coin coin) {
-        this.usedCoins.add(coin);
-    }
-
-
     public int getEnteredCoinsTotal() {
         int total = 0;
         for (Coin coin : this.usedCoins) {
@@ -34,4 +31,31 @@ public class VendingMachine {
         }
         return total;
     }
+
+    public boolean isCoinValid(Coin coin) {
+        if (coin.getValue() >= 5) {
+            return true;
+        }
+        return false;
+    }
+
+    public void addCoin(Coin coin) {
+        if (this.isCoinValid(coin) == true) {
+            this.usedCoins.add(coin);
+        } else {
+            this.coinReturn.addCoin(coin);
+        }
+    }
+
+    public Product dispenseItem(ItemCode code){
+        for (Drawer drawer : drawers){
+            if ( drawer.getCode() == code){
+                return drawer.returnProduct();
+            }
+        } return null;
+    }
+
+
+
+
 }

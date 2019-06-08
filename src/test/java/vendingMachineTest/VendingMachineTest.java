@@ -25,6 +25,8 @@ public class VendingMachineTest {
     private Coin twenty;
     private Coin ten;
     private Coin five;
+    private Coin two;
+    private Coin one;
     private Crisps crisps;
     private Sweet sweet;
     private Drink drink;
@@ -45,6 +47,8 @@ public class VendingMachineTest {
         twenty = new Coin(CoinType.TWENTY);
         ten = new Coin(CoinType.TEN);
         five = new Coin(CoinType.FIVE);
+        two = new Coin(CoinType.TWO);
+        one = new Coin(CoinType.ONE);
         vendingMachine.addDrawer(drawerA1);
         vendingMachine.addDrawer(drawerA2);
         vendingMachine.addDrawer(drawerA3);
@@ -54,5 +58,23 @@ public class VendingMachineTest {
     public void canAddCoin() {
         vendingMachine.addCoin(twenty);
         assertEquals(20, vendingMachine.getEnteredCoinsTotal());
+    }
+
+    @Test
+    public void canNotAdd1p(){
+        vendingMachine.addCoin(one);
+        assertEquals(0, vendingMachine.getEnteredCoinsTotal());
+    }
+
+    @Test
+    public void canNotAdd2p(){
+        vendingMachine.addCoin(two);
+        assertEquals(0, vendingMachine.getEnteredCoinsTotal());
+    }
+
+    @Test
+    public void canAdd5p(){
+        vendingMachine.addCoin(five);
+        assertEquals(5, vendingMachine.getEnteredCoinsTotal());
     }
 }
