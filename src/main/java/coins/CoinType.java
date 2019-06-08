@@ -1,7 +1,6 @@
 package coins;
 
-public enum Coins {
-
+public enum CoinType {
 
     FIVE(5),
     TEN(10),
@@ -12,12 +11,12 @@ public enum Coins {
 
     private final int value;
 
-    Coins(int value) {
+    CoinType(int value) {
         this.value = value;
     }
 
     public int getValueFromEnum() {
         return this.value;
     }
-}
 
+}
