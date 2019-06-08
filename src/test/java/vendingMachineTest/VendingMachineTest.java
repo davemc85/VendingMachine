@@ -99,13 +99,13 @@ public class VendingMachineTest {
     @Test
     public void sellItem(){
         vendingMachine.addCoin(twoPound);
-        assertEquals("Your item is on its way", vendingMachine.sellItem(drawerA1, ItemCode.A1));
+        assertEquals("Your item is on its way", vendingMachine.sellItem(drawerA1));
     }
 
     @Test
     public void noSellItem(){
         vendingMachine.addCoin(ten);
-        assertEquals("Insert more money", vendingMachine.sellItem(drawerA1, ItemCode.A1));
+        assertEquals("Insert more money", vendingMachine.sellItem(drawerA1));
     }
 
 }

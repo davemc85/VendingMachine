@@ -73,9 +73,9 @@ public class VendingMachine {
         }
     }
 
-    public String sellItem(Drawer drawer, ItemCode code){
+    public String sellItem(Drawer drawer){
         if(canAffordItem(drawer)){
-            dispenseItem(code);
+            dispenseItem(drawer.getCode());
             return "Your item is on its way";
         } else {
             return "Insert more money";
