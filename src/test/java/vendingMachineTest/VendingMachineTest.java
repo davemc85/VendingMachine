@@ -96,6 +96,16 @@ public class VendingMachineTest {
         assertFalse(vendingMachine.canAffordItem(drawerA2));
     }
 
+    @Test
+    public void sellItem(){
+        vendingMachine.addCoin(twoPound);
+        assertEquals("Your item is on its way", vendingMachine.sellItem(drawerA1, ItemCode.A1));
+    }
 
+    @Test
+    public void noSellItem(){
+        vendingMachine.addCoin(ten);
+        assertEquals("Insert more money", vendingMachine.sellItem(drawerA1, ItemCode.A1));
+    }
 
 }

@@ -73,4 +73,13 @@ public class VendingMachine {
         }
     }
 
+    public String sellItem(Drawer drawer, ItemCode code){
+        if(canAffordItem(drawer)){
+            dispenseItem(code);
+            return "Your item is on its way";
+        } else {
+            return "Insert more money";
+        }
+    }
+
 }
