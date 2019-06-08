@@ -12,11 +12,13 @@ public class VendingMachine {
 
     private ArrayList<Drawer> drawers;
     private ArrayList<Coin> usedCoins;
+    private ArrayList<Coin> returnedCoins;
     private CoinReturn coinReturn;
 
     public VendingMachine() {
         this.drawers = new ArrayList<Drawer>();
         this.usedCoins = new ArrayList<Coin>();
+        this.returnedCoins = new ArrayList<Coin>();
         this.coinReturn = new CoinReturn();
     }
 
@@ -24,9 +26,17 @@ public class VendingMachine {
         this.drawers.add(drawer);
     }
 
-    public int getEnteredCoinsTotal() {
+    public int getUsedCoinsTotal() {
         int total = 0;
         for (Coin coin : this.usedCoins) {
+            total += coin.getValue();
+        }
+        return total;
+    }
+
+    public int getReturnedCoinsTotal() {
+        int total = 0;
+        for (Coin coin : this.returnedCoins) {
             total += coin.getValue();
         }
         return total;
@@ -43,7 +53,7 @@ public class VendingMachine {
         if (this.isCoinValid(coin) == true) {
             this.usedCoins.add(coin);
         } else {
-            this.coinReturn.addCoin(coin);
+            this.returnedCoins.add(coin);
         }
     }
 
@@ -55,7 +65,12 @@ public class VendingMachine {
         } return null;
     }
 
-
-
+    public boolean canAffordItem(Drawer drawer) {
+        if (getUsedCoinsTotal() >= drawer.getPrice()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
