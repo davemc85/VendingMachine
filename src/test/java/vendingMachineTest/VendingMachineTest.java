@@ -11,6 +11,8 @@ import products.Drink;
 import products.Sweet;
 import vendingMachine.VendingMachine;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class VendingMachineTest {
@@ -30,6 +32,7 @@ public class VendingMachineTest {
     private Crisps crisps;
     private Sweet sweet;
     private Drink drink;
+
 
 
     @Before
@@ -106,6 +109,40 @@ public class VendingMachineTest {
     public void noSellItem(){
         vendingMachine.addCoin(ten);
         assertEquals("Insert more money", vendingMachine.sellItem(drawerA1));
+    }
+
+    @Test
+    public void canGetCoins(){
+        vendingMachine.addCoin(one);
+        assertEquals(1, vendingMachine.getReturnedCoins().size());
+    }
+
+    @Test
+    public void canIssueChange(){
+        vendingMachine.workOutChange(35);
+        assertEquals(35, vendingMachine.getReturnedCoinsTotal());
+        assertEquals(3, vendingMachine.getReturnedCoins().size());
+    }
+
+    @Test
+    public void canIssueChangeTest2(){
+        vendingMachine.workOutChange(45);
+        assertEquals(45, vendingMachine.getReturnedCoinsTotal());
+        assertEquals(3, vendingMachine.getReturnedCoins().size());
+    }
+
+    @Test
+    public void canIssueChangeTest3(){
+        vendingMachine.workOutChange(50);
+        assertEquals(50, vendingMachine.getReturnedCoinsTotal());
+        assertEquals(1, vendingMachine.getReturnedCoins().size());
+    }
+
+    @Test
+    public void canIssueChangeTest4(){
+        vendingMachine.workOutChange(95);
+        assertEquals(95, vendingMachine.getReturnedCoinsTotal());
+        assertEquals(4, vendingMachine.getReturnedCoins().size());
     }
 
 }

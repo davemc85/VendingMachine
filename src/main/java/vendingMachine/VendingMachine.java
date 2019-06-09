@@ -2,6 +2,7 @@ package vendingMachine;
 
 import coins.Coin;
 import coins.CoinReturn;
+import coins.CoinType;
 import drawer.Drawer;
 import drawer.ItemCode;
 import products.Product;
@@ -14,16 +15,33 @@ public class VendingMachine {
     private ArrayList<Coin> usedCoins;
     private ArrayList<Coin> returnedCoins;
     private CoinReturn coinReturn;
+    private Coin twoPound;
+    private Coin pound;
+    private Coin fifty;
+    private Coin twenty;
+    private Coin ten;
+    private Coin five;
+
 
     public VendingMachine() {
         this.drawers = new ArrayList<Drawer>();
         this.usedCoins = new ArrayList<Coin>();
         this.returnedCoins = new ArrayList<Coin>();
         this.coinReturn = new CoinReturn();
+        twoPound = new Coin(CoinType.TWOPOUND);
+        pound = new Coin(CoinType.POUND);
+        fifty = new Coin(CoinType.FIFTY);
+        twenty = new Coin(CoinType.TWENTY);
+        ten = new Coin(CoinType.TEN);
+        five = new Coin(CoinType.FIVE);
     }
 
     public void addDrawer(Drawer drawer){
         this.drawers.add(drawer);
+    }
+
+    public ArrayList<Coin> getReturnedCoins(){
+        return this.returnedCoins;
     }
 
     public int getUsedCoinsTotal() {
@@ -81,5 +99,37 @@ public class VendingMachine {
             return "Insert more money";
         }
     }
+
+    public void workOutChange(int change){
+         ArrayList<Coin> returnedCoins = new ArrayList<Coin>();
+        if(change >= 200){
+            this.returnedCoins.add(twoPound);
+            change -= 200;
+        } if(change >= 100){
+            this.returnedCoins.add(pound);
+            change -= 100;
+        } if (change >= 50){
+            this.returnedCoins.add(fifty);
+            change -= 50;
+        } if (change >= 20){
+            this.returnedCoins.add(twenty);
+            change -= 20;
+            if (change >= 20){
+                this.returnedCoins.add(twenty);
+                change -= 20;
+            }
+        } if (change >= 10){
+            this.returnedCoins.add(ten);
+            change -= 10;
+            if (change >= 10){
+                this.returnedCoins.add(twenty);
+                change -= 10;
+            }
+        } if (change >= 5){
+            this.returnedCoins.add(five);
+            change -= 5;
+        }
+    }
+
 
 }
